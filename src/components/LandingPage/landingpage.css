@@ -1,0 +1,43 @@
+.container{
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.heading div{
+  font-size: 55px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  /* text color graident */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background: -o-linear-gradient(right, white , #06586f);
+  background: -moz-linear-gradient(right, white , #06586f);
+  background: linear-gradient(to right, white , #06586f); 
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
+.heading img{
+  margin-right: 20px;
+}
+
+.container button{
+  width: 270px;
+}
+.container button:hover{
+  width: 290px;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
