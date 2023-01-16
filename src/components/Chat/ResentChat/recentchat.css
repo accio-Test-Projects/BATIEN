@@ -1,0 +1,39 @@
+.recentchat-container{
+  max-width: 90%;
+  margin: 10px auto ;
+}
+
+.recentchat-item{
+  max-width: 200px;
+  margin: 10px;
+  padding: 10px;
+  background: #F7F7F7;
+  border-radius: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.new-message{
+  background:#2f80ed17!important;
+}
+.recentchat-item__img div{
+  text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: bold;
+}
+.recentchat-item__img{
+  display: flex;
+
+}
+.recentchat-item__img img{
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.recentchat-message{
+  text-align: start;
+  margin: 10px 0px;
+  font-size: 13px;
+}

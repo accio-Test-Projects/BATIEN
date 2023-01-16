@@ -18,6 +18,7 @@ import Settings from "../components/Settings";
 import MyProfile from "../components/Settings/MyProfile";
 import ChatWallpaper from "../components/Settings/ChatWallpaper";
 import {userContext} from '../context/userContext'
+import Hoc from "../Hoc";
 function Navs() {
   const [state, dispatch] = useContext(userContext);
   //protected routes
@@ -35,22 +36,33 @@ function Navs() {
       return <Navigate to="/" />;
     }
   };
-
+const BottomNav = () => {
+    return (
+      <Hoc>
+        <Outlet />
+      </Hoc>
+    );
+}
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" exact element={<LandingPage />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/onboarding" element={<Onboarding />} />
+          <Route element={<BottomNav />} >
           <Route path="/chat/resentchat" element={<ResentChat />} />
-          <Route path="/chat/newchat" element={<NewChat />} />
           <Route path="/chat/groupchat" element={<GroupChat />} />
+          <Route path="/settings" element={<Settings />} />
+          </Route>
+          <Route path="/chat/newchat" element={<NewChat />} />
+        
           <Route path="/chat/dms" element={<Dms />} />
           <Route path="/groupprofile" element={<GroupProfile />} />
           <Route path="/userprofile" element={<UserProfile />} />
-          <Route path="/settings" element={<Settings />} />
+        
           <Route path="/settings/profile" element={<MyProfile />} />
           <Route path="/settings/wallpaper" element={<ChatWallpaper />} />
+         
         </Route>
       </Routes>
     </BrowserRouter>

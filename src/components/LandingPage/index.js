@@ -22,7 +22,7 @@ function LandingPage() {
         photoURL,
       }
     })
-    if (true) {
+    if (false) {
       navigate("/chat/resentchat");
       // redirect to resent chats
     } else {

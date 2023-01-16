@@ -1,0 +1,13 @@
+.onboarding-container{
+  padding: 20px;
+}
+.submit-button{
+  margin-top: 20px;
+  filter: drop-shadow(0px 4px 32px rgba(70, 96, 135, 0.25));
+  background-color: #2F80ED;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+}
