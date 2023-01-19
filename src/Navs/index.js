@@ -10,8 +10,8 @@ import LandingPage from "../components/LandingPage";
 import Onboarding from "../components/Onboarding";
 import ResentChat from "../components/Chat/ResentChat";
 import NewChat from "../components/Chat/NewChat";
-import GroupChat from "../components/Chat/GroupChat";
-import Dms from "../components/Chat/Dms";
+import GroupResentChat from "../components/Chat/GroupResentChat";
+import ChatScreen from "../components/Chat/ChatScreen";
 import GroupProfile from "../components/Profiles/GroupProfile";
 import UserProfile from "../components/Profiles/UserProfile";
 import Settings from "../components/Settings";
@@ -26,7 +26,6 @@ function Navs() {
     // if user is logged in, allow access to the route
     // if user is not logged in, redirect to login page
     if (
-      //
       state.isAuth
     ) {
       //allow access to the route
@@ -51,12 +50,13 @@ const BottomNav = () => {
           <Route path="/onboarding" element={<Onboarding />} />
           <Route element={<BottomNav />} >
           <Route path="/chat/resentchat" element={<ResentChat />} />
-          <Route path="/chat/groupchat" element={<GroupChat />} />
+          <Route path="/chat/GroupResentChat" element={<GroupResentChat />} />
           <Route path="/settings" element={<Settings />} />
           </Route>
           <Route path="/chat/newchat" element={<NewChat />} />
         
-          <Route path="/chat/dms" element={<Dms />} />
+          <Route path="/chat/dms" element={<ChatScreen type='dms' />} />
+          <Route path="/chat/groupchat" element={<ChatScreen type='group' />} />
           <Route path="/groupprofile" element={<GroupProfile />} />
           <Route path="/userprofile" element={<UserProfile />} />
         

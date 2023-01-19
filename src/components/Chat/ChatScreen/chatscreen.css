@@ -1,0 +1,133 @@
+.chatScreen-container{
+  width: 100%;
+  height: 98vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.chatScreen-header{
+  height: 10%!important;
+}
+.chatScreen-header :first-child{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatScreen-body{
+  height: 70%!important;
+  display: flex;
+  flex-direction: column!important;
+   justify-content: flex-end;
+}
+.chatScreen-body :first-child{
+
+}
+.chatScreen-header_img{
+  border-radius: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chatScreen-header_name{
+  height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+    justify-content: center;
+}
+.chatScreen-header_name :first-child{
+  font-weight: 500;
+font-size: 18px;
+line-height: 23px;
+display: flex;
+align-items: flex-end;
+
+
+/* Text - Primary */
+
+color: #1B1A57;
+}
+
+.chatScreen-header_name :last-child{
+  font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+/* identical to box height, or 150% */
+text-transform: capitalize;
+display: flex;
+align-items: flex-end;
+
+/* Text - Secondary */
+
+color: #4F5E7B;
+
+}
+
+.chatScreen-input{
+  display: flex;
+  align-items: center !important;
+  padding: 10px 10px 0px 10px !important;
+  border-top: 1px solid #EDEDED;
+}
+
+.chatScreen-input input{
+  flex: 1;
+  border: none;
+  width: 100%;
+  outline: none;
+  padding: 0px 10px;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 30px;
+  background-color: #F2F2F2;
+}
+.chat-message-outgoing{
+  max-width: 49%;
+  float: right;
+  padding: 5px;
+  background: #2F80ED;
+  border-radius: 8px 8px 0px 8px;
+  color: #fff;
+  text-align: left;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.chatMessage-incoming{
+  max-width: 49%;
+  padding: 8px;
+  float: left;
+  background: #F7F7F7;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+  font-size: 13px;
+  line-height: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+
+
+
+color: #1B1A57;
+ 
+}
+
+.chatMessage-replyOnreply{
+  background: #1414ff85;
+    border-radius: inherit;
+    padding: 10px;
+    width: -webkit-fill-available;
+    margin-bottom: 5px;
+    max-height: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

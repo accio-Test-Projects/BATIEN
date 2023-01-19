@@ -15,7 +15,7 @@ const handleClick = (newValue) => {
     navigate('/chat/resentchat')
   }
   if(newValue===1){
-    navigate('/chat/groupchat')
+    navigate('/chat/GroupResentChat')
   }
   if(newValue===2){
     navigate('/settings')
