@@ -6,9 +6,16 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import ChatMessage from "./ChatMessage";
+import { useContext } from "react";
+import { userContext } from "../../../context/userContext";
 function ChatScreen({ type }) {
+  const [state, setState] = useContext(userContext);
   return (
-    <div className="chatScreen-container">
+    <div
+    style={{
+      backgroundImage: `url(${state.user.wallpaper})`,
+    }}
+    className="chatScreen-container">
       <Grid
         className="chatScreen-header"
         container

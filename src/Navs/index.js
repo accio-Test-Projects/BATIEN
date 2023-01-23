@@ -19,8 +19,10 @@ import MyProfile from "../components/Settings/MyProfile";
 import ChatWallpaper from "../components/Settings/ChatWallpaper";
 import {userContext} from '../context/userContext'
 import Hoc from "../Hoc";
+import { darkContext } from "../context/DarkmodeContext";
 function Navs() {
   const [state, dispatch] = useContext(userContext);
+  const [theme, setTheme] = useContext(darkContext);
   //protected routes
   const ProtectedRoute = () => {
     // if user is logged in, allow access to the route
@@ -43,6 +45,12 @@ const BottomNav = () => {
     );
 }
   return (
+    <div
+    
+    style={{
+      backgroundColor: theme.background,
+    }}
+    className="App">
     <BrowserRouter>
       <Routes>
         <Route path="/" exact element={<LandingPage />} />
@@ -66,6 +74,7 @@ const BottomNav = () => {
         </Route>
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 

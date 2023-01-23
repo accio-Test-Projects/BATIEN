@@ -1,0 +1,8 @@
+.chatWallpaper-container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 20px;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,92 @@
+.settings-header{
+  font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 23px;
+float: left;
+margin: 10px auto;
+
+}
+.settings-profile{
+  display: flex;
+  grid-gap: 10px;
+  align-items: center;
+}
+.settings-profile img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.settings-profile h3{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  margin: 0px;
+  text-align: left;
+}
+.settings-profile h4{
+  font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+margin: 0px;
+text-align: left;
+text-overflow: ellipsis;
+overflow: hidden;
+width: 80%;
+max-height: 55px;
+}
+
+.settings-dark-mode{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+}
+
+.settings-dark-mode :first-child{
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+.settings-account{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+}
+.settings-account :first-child{
+  display: flex;
+  align-items: center;
+  grid-gap:10px;
+  height: 100px;
+  font-style: normal;
+font-weight: 400;
+font-size: 20px;
+display: flex;
+align-items: center;
+}
+.settings-chat-wallpaper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+}
+.settings-chat-wallpaper :first-child{
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+  height: 100px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}

@@ -70,6 +70,7 @@ color: #4F5E7B;
   align-items: center !important;
   padding: 10px 10px 0px 10px !important;
   border-top: 1px solid #EDEDED;
+  background-color: #fff;
 }
 
 .chatScreen-input input{
