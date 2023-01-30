@@ -47,7 +47,6 @@ align-items: flex-end;
 
 /* Text - Primary */
 
-color: #1B1A57;
 }
 
 .chatScreen-header_name :last-child{
@@ -61,7 +60,7 @@ align-items: flex-end;
 
 /* Text - Secondary */
 
-color: #4F5E7B;
+/* color: #4F5E7B; */
 
 }
 
@@ -85,6 +84,8 @@ color: #4F5E7B;
   background-color: #F2F2F2;
 }
 .chat-message-outgoing{
+  display: flex;
+  flex-direction: row-reverse;
   max-width: 49%;
   float: right;
   padding: 5px;
@@ -101,6 +102,8 @@ color: #4F5E7B;
 
 .chatMessage-incoming{
   max-width: 49%;
+  display: flex;
+  flex-direction: row-reverse;
   padding: 8px;
   float: left;
   background: #F7F7F7;
@@ -110,8 +113,7 @@ color: #4F5E7B;
   text-align: left;
   font-size: 13px;
   line-height: 18px;
-  display: flex;
-  flex-direction: column;
+
   align-items: flex-start;
 
 
@@ -120,7 +122,15 @@ color: #4F5E7B;
 color: #1B1A57;
  
 }
+.chatMessage-replyOnreply-options{
+  background: #fff;
+  color: #000;
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  right: 30px;
 
+}
 .chatMessage-replyOnreply{
   background: #1414ff85;
     border-radius: inherit;
@@ -131,4 +141,12 @@ color: #1B1A57;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+.chatscreen-image{
+  width: 50px;
+  /* height: 100px; */
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: center;
 }

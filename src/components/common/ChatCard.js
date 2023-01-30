@@ -2,18 +2,20 @@ import { Grid } from "@mui/material";
 import React, { useContext } from "react";
 import { darkContext } from "../../context/DarkmodeContext";
 
-function ChatCard({ name, message, time, image, newMessage, onClick }) {
+function ChatCard({ name, message,item, time, image, newMessage, onClick }) {
   const [theme, setTheme] = useContext(darkContext);
   return (
     <>
-      <Grid item xs={2} className="chatCard__img">
+      <Grid
+      onClick={()=>onClick(item)}
+      item xs={2} className="chatCard__img">
         <img
           style={{
             width: "30px",
             borderRadius: "50%",
             marginRight: "10px",
           }}
-          src="https://lh3.googleusercontent.com/a/AEdFTp4vt6egY9bg6OFMRxW5RGLIOcPHMQ-xan1hGg8r-q8=s96-c"
+          src={image}
           alt="Remy Sharp"
         />
       </Grid>

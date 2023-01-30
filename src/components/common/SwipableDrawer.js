@@ -10,7 +10,6 @@ import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
-const drawerBleeding = 50;
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
@@ -33,8 +32,7 @@ const Puller = styled(Box)(({ theme }) => ({
 }));
 
 function SwipableDrawer(props) {
-  const { window,children } = props;
-  const [open, setOpen] = React.useState(false);
+  const { window,children,drawerBleeding=50,title,open, setOpen } = props;
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -79,7 +77,7 @@ function SwipableDrawer(props) {
           }}
         >
           <Puller />
-          <Typography sx={{ p: 2, color: 'text.secondary' }}>Recent Chats</Typography>
+          <Typography sx={{ p: 2, color: 'text.secondary' }}>{title}</Typography>
         </StyledBox>
         <StyledBox
           sx={{

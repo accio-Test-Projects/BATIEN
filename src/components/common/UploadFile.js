@@ -3,8 +3,10 @@ import { upload } from "@testing-library/user-event/dist/upload";
 import React from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebaseConfig";
-function UploadFile({ file, setFile }) {
+import AttachFileIcon from "@mui/icons-material/AttachFile";
+function UploadFile({ file,accept='images', setFile, icon = null }) {
   const [progress, setProgress] = React.useState(0);
+  const inpref = React.useRef(null);
   const upload = (e) => {
     console.log(e.target.files[0]);
     const file = e.target.files[0];
@@ -42,13 +44,18 @@ function UploadFile({ file, setFile }) {
   return progress > 0 ? (
     <div>{progress} %</div>
   ) : (
-    <TextField
-      type={"file"}
-      inputProps={{
-        accept: "image/*",
-      }}
-      onChange={(e) => upload(e)}
-    />
+    <>
+      {icon && <AttachFileIcon onClick={() => inpref.current.click()} />}
+      <input
+        style={{
+          display: icon ? "none" : "block",
+        }}
+        type={"file"}
+        accept={accept==='images'?"image/*":'application/pdf'}
+        ref={inpref}
+        onChange={(e) => upload(e)}
+      />
+    </>
   );
 }
 

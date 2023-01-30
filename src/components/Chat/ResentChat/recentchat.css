@@ -37,3 +37,17 @@
   margin: 10px 0px;
   font-size: 13px;
 }
+.newchat-btn{
+  position: fixed;
+  bottom: 70px;
+  width: 50px;
+  height: 50px;
+  right: 10px;
+  background: #2f80ed;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 9;
+}
