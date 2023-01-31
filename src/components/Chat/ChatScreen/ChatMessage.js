@@ -7,7 +7,7 @@ function ChatMessage(props) {
   const [openOptions, setOpenOptions] = React.useState(false);
   const {
     messageType,
-    replyOnreply = false,
+    replyOnreply,
     message,
     timeStamp,
     senderImg,
@@ -24,60 +24,148 @@ function ChatMessage(props) {
           {openOptions ? (
             <div className="chatMessage-replyOnreply-options">
               <div
-              onClick={() => replyonReplyFunction({
-                message,
-                timeStamp,
-                senderName,
-                senderemail
-              })}
-              >Reply</div>
+                onClick={() => {
+                  replyonReplyFunction({
+                    message,
+                    timeStamp,
+                    senderName,
+                    senderemail,
+                  });
+                  setOpenOptions(!openOptions);
+                }}
+              >
+                Reply
+              </div>
             </div>
           ) : null}
-          {messageType === "text" ? (
-            <div>{message.message}</div>
-          ) : messageType === "image" ? (
-            <div>
-              <img src={message.url} width="100%" alt="img" />
-            </div>
-          ) : (
-            <div>
-              <a href={message.url} target="_blank" rel="noreferrer">
-                <img width="50px" alt="icon" src={PDFicon} />
-              </a>
-              <div>A doc</div>
-            </div>
-          )}
+          <div>
+            {replyOnreply ? (
+              <div
+                className="chatMessage-replyOnreply"
+                style={{ background: "#c2c2ff85" }}
+              >
+                {replyOnreplyMessage.message.messageType === "text" ? (
+                  <div>{replyOnreplyMessage.message.message}</div>
+                ) : replyOnreplyMessage.message.messageType === "image" ? (
+                  <div>
+                     <a
+                      href={replyOnreplyMessage.message.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                    <img
+                      src={replyOnreplyMessage.message.url}
+                      width="100%"
+                      alt="img"
+                    />
+                    </a>
+                  </div>
+                ) : (
+                  <div>
+                    <a
+                      href={replyOnreplyMessage.message.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img width="50px" alt="icon" src={PDFicon} />
+                    </a>
+                    <div>A doc</div>
+                  </div>
+                )}
+              </div>
+            ) : null}
+            {messageType === "text" ? (
+              <div>{message.message}</div>
+            ) : messageType === "image" ? (
+              <div>
+                <img src={message.url} width="100%" alt="img" />
+              </div>
+            ) : (
+              <div>
+                <a href={message.url} target="_blank" rel="noreferrer">
+                  <img width="50px" alt="icon" src={PDFicon} />
+                </a>
+                <div>A doc</div>
+              </div>
+            )}
+          </div>
         </div>
       ) : (
         <div className="chatMessage-incoming">
-          <MoreVertIcon />
+          <MoreVertIcon onClick={() => setOpenOptions(!openOptions)} />
+          {openOptions ? (
+            <div className="chatMessage-replyOnreply-options">
+              <div
+                onClick={() => {
+                  replyonReplyFunction({
+                    message,
+                    timeStamp,
+                    senderName,
+                    senderemail,
+                  });
+                  setOpenOptions(!openOptions);
+                }}
+              >
+                Reply
+              </div>
+            </div>
+          ) : null}
           {openOptions && (
             <div className="chatMessage-options">
               <div>Reply</div>
             </div>
           )}
-          {replyOnreply ? (
-            <div
-              className="chatMessage-replyOnreply"
-              style={{ background: "#c2c2ff85" }}
-            >
-              reply on reply
-            </div>
-          ) : null}
-          {messageType === "text" ? (
-            <div>{message.message}</div>
-          ) : messageType === "image" ? (
-            <div>
-              <img src={message.url} width="100%" alt="img" />
-            </div>
-          ) : (
-            <div>
-              <a href={message.url} target="_blank" rel="noreferrer">
-                <img width="50px" alt="icon" src={PDFicon} />
-              </a>
-              <div>A doc</div>
-            </div>
-          )}
+          <div>
+            {replyOnreply ? (
+              <div
+                className="chatMessage-replyOnreply"
+                style={{ background: "#c2c2ff85" }}
+              >
+                {replyOnreplyMessage.message.messageType === "text" ? (
+                  <div>{replyOnreplyMessage.message.message}</div>
+                ) : replyOnreplyMessage.message.messageType === "image" ? (
+                  <div>
+                     <a
+                      href={replyOnreplyMessage.message.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                    <img
+                      src={replyOnreplyMessage.message.url}
+                      width="100%"
+                      alt="img"
+                    />
+                    </a>
+                  </div>
+                ) : (
+                  <div>
+                   
+                     <a
+                     href={replyOnreplyMessage.message.url}
+                      target="_blank"
+                      rel="noreferrer"
+                     > <img width="50px" alt="icon" src={PDFicon} /></a>
+                   
+                    <div>A doc</div>
+                  </div>
+                )}
+              </div>
+            ) : null}
+            {messageType === "text" ? (
+              <div>{message.message}</div>
+            ) : messageType === "image" ? (
+              <div>
+                <img src={message.url} width="100%" alt="img" />
+              </div>
+            ) : (
+              <div>
+                <a href={message.url} target="_blank" rel="noreferrer">
+                  <img width="50px" alt="icon" src={PDFicon} />
+                </a>
+                <div>A doc</div>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

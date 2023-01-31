@@ -45,8 +45,6 @@ function ChatScreen({ type }) {
     if (last_message) {
       if (type === "dms") {
         // get userInfo  from db
-
-        fetchUserInfo();
         fetchAllDms();
         // setState({
         //   ...state,
@@ -56,6 +54,11 @@ function ChatScreen({ type }) {
       }
     }
   }, [last_message]);
+  useEffect(() => {
+    if(type==="dms"){
+      fetchUserInfo();
+    }
+  }, []);
 
   const fetchAllDms = async () => {
     try {
@@ -88,6 +91,7 @@ function ChatScreen({ type }) {
 
   const fetchUserInfo = async () => {
     try {
+      
       const docRef = doc(db, "userInfo", id);
       const docSnap = await getDoc(docRef);
 
@@ -95,7 +99,7 @@ function ChatScreen({ type }) {
       setLoading(false);
     } catch (err) {
       console.log(err);
-      setLoading(false);
+     
     }
   };
   const sendMessageHandler = async () => {
@@ -108,23 +112,21 @@ function ChatScreen({ type }) {
       conversationKey,
       createdAt: new Date(),
       last_message_id,
-      replyOnreply: replyOnreplyData ? true : false,
-      ...(replyOnreplyData && { replyOnreplyMessage: replyOnreplyData }),
-      users: [
+      user1:
         {
           email: state.user.email,
           name: state.user.displayName,
+          photo: state.user.photoURL,
         },
-        {
+        user2:{
           email: secUser.email,
           name: secUser.name,
+          photo: secUser.photo,
         },
-      ],
     };
+    console.log(messagePayload);
     try {
-      await setDoc(doc(db, "last_messages", last_message_id), messagePayload, {
-        merge: true,
-      });
+      await setDoc(doc(db, "last_messages", last_message_id), messagePayload);
     } catch (err) {
       console.log(err);
     }
@@ -137,6 +139,8 @@ function ChatScreen({ type }) {
           convId,
           createdAt: new Date(),
           message: sendMessage,
+          replyOnreply: replyOnreplyData ? true : false,
+          ...(replyOnreplyData && { replyOnreplyMessage: replyOnreplyData }),
           sender: {
             email: state.user.email,
             name: state.user.displayName,
@@ -153,11 +157,23 @@ function ChatScreen({ type }) {
       message: "",
       messageType: "text",
     });
+    setReplyOnreplyData(null);
+
+    if(!last_message){
+      window.location.reload();
+    }
   };
-  const replyonReplyFunction = (message) => {
-    console.log(message);
+  const replyonReplyFunction = ({
+    message,
+    timeStamp,
+    senderName,
+    senderemail,
+  }) => {
     setReplyOnreplyData({
       message,
+      timeStamp,
+      senderName,
+      senderemail,
     });
   };
 
@@ -299,6 +315,7 @@ function ChatScreen({ type }) {
                 allMessages.map((item, i) => {
                   return (
                     <ChatMessage
+                    
                       messageType={item.message.messageType}
                       replyOnreply={item.replyOnreply}
                       replyOnreplyMessage={
@@ -323,7 +340,7 @@ function ChatScreen({ type }) {
               <Grid item xs={12}>
                 <div className="replyOnreply">
                   {replyOnreplyData.message.messageType === "text" ? (
-                    <div>{replyOnreplyData.message}</div>
+                    <div>{replyOnreplyData.message.message}</div>
                   ) : (
                     <div>file</div>
                   )}

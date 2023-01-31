@@ -42,27 +42,28 @@ function NewChat() {
     <Grid
       container
       spacing={3}
-      className="chatCard"
 
       // onClick={onClnulick}
     >
       {loading ? (
         <div>loading...</div>
       ) : (
-        <div>
-          {allUsers.map((item, i) => {
-            return (
-              <ChatCard
-                name={item.name}
-                // message={"hey"}
-                item={item}
-                // time={"12:00"}
-                image={item.photo}
-                // newMessage={1}
-                onClick={startAnewConversation}
-              />
-            );
-          })}
+        <div className="newchat-container">
+          <Grid container>
+            {allUsers.map((item, i) => {
+              return (
+                <ChatCard
+                  name={item.name}
+                  // message={"hey"}
+                  item={item}
+                  // time={"12:00"}
+                  image={item.photo}
+                  // newMessage={1}
+                  onClick={startAnewConversation}
+                />
+              );
+            })}
+          </Grid>
         </div>
       )}
     </Grid>

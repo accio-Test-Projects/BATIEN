@@ -37,6 +37,10 @@
   margin: 10px 0px;
   font-size: 13px;
 }
+.newchat-container{
+  margin: 100px auto !important;
+  max-width: 90%;
+}
 .newchat-btn{
   position: fixed;
   bottom: 70px;

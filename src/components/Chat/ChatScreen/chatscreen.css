@@ -85,6 +85,7 @@ align-items: flex-end;
 }
 .chat-message-outgoing{
   display: flex;
+  position: relative;
   flex-direction: row-reverse;
   max-width: 49%;
   float: right;
@@ -102,6 +103,7 @@ align-items: flex-end;
 
 .chatMessage-incoming{
   max-width: 49%;
+  position: relative;
   display: flex;
   flex-direction: row-reverse;
   padding: 8px;
