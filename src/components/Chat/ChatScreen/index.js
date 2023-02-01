@@ -55,7 +55,7 @@ function ChatScreen({ type }) {
     }
   }, [last_message]);
   useEffect(() => {
-    if(type==="dms"){
+    if (type === "dms") {
       fetchUserInfo();
     }
   }, []);
@@ -91,7 +91,6 @@ function ChatScreen({ type }) {
 
   const fetchUserInfo = async () => {
     try {
-      
       const docRef = doc(db, "userInfo", id);
       const docSnap = await getDoc(docRef);
 
@@ -99,7 +98,6 @@ function ChatScreen({ type }) {
       setLoading(false);
     } catch (err) {
       console.log(err);
-     
     }
   };
   const sendMessageHandler = async () => {
@@ -112,17 +110,16 @@ function ChatScreen({ type }) {
       conversationKey,
       createdAt: new Date(),
       last_message_id,
-      user1:
-        {
-          email: state.user.email,
-          name: state.user.displayName,
-          photo: state.user.photoURL,
-        },
-        user2:{
-          email: secUser.email,
-          name: secUser.name,
-          photo: secUser.photo,
-        },
+      user1: {
+        email: state.user.email,
+        name: state.user.displayName,
+        photo: state.user.photoURL,
+      },
+      user2: {
+        email: secUser.email,
+        name: secUser.name,
+        photo: secUser.photo,
+      },
     };
     console.log(messagePayload);
     try {
@@ -159,7 +156,7 @@ function ChatScreen({ type }) {
     });
     setReplyOnreplyData(null);
 
-    if(!last_message){
+    if (!last_message) {
       window.location.reload();
     }
   };
@@ -195,10 +192,8 @@ function ChatScreen({ type }) {
               color: theme.font1,
             }}
           >
-            <Grid item xs={1}>
-              <ArrowBackIcon color="black" sx={{}} />
-            </Grid>
-            <Grid item xs={2}>
+  
+            <Grid item xs={3}>
               <div className="chatScreen-header_img">
                 <img
                   style={{ width: "50px", borderRadius: "inherit" }}
@@ -228,7 +223,14 @@ function ChatScreen({ type }) {
               </IconButton>
             </Grid>
           </Grid>
-          <Grid className="chatScreen-body">
+          <Grid
+            sx={{
+              backgroundImage: `url("${state.user.wallpaper}")`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+            }}
+            className="chatScreen-body"
+          >
             <div
               style={{
                 overflow: "scroll",
@@ -315,7 +317,6 @@ function ChatScreen({ type }) {
                 allMessages.map((item, i) => {
                   return (
                     <ChatMessage
-                    
                       messageType={item.message.messageType}
                       replyOnreply={item.replyOnreply}
                       replyOnreplyMessage={
@@ -335,82 +336,96 @@ function ChatScreen({ type }) {
               }
             </div>
           </Grid>
-          <Grid container spacing={2} className="chatScreen-input">
-            {replyOnreplyData && (
-              <Grid item xs={12}>
-                <div className="replyOnreply">
-                  {replyOnreplyData.message.messageType === "text" ? (
-                    <div>{replyOnreplyData.message.message}</div>
+          <Grid
+            container
+            sx={{
+              background: theme.background,
+              margin: '10px 0px'
+            }}
+            className="chatScreen-input"
+          >
+          
+              {replyOnreplyData && (
+                <Grid item xs={12}>
+                  <div
+                  style={{
+                    background: theme.background,
+                    color: theme.font1,
+                  }}
+                  className="replyOnreply">
+                    {replyOnreplyData.message.messageType === "text" ? (
+                      <div>{replyOnreplyData.message.message}</div>
+                    ) : (
+                      <div>file</div>
+                    )}
+                  </div>
+                </Grid>
+              )}
+              {sendMessage.url && (
+                <Grid sx={{ display: "flex" }} item xs={12}>
+                  {sendMessage.messageType === "image" ? (
+                    <div className="chatscreen-image">
+                      <img width="100px" src={sendMessage.url} alt="img" />
+                    </div>
                   ) : (
-                    <div>file</div>
+                    <div className="chatscreen-image">
+                      <a href={sendMessage.message.url} target="_blank">
+                        {doc}
+                      </a>
+                    </div>
                   )}
-                </div>
-              </Grid>
-            )}
-            {sendMessage.url && (
-              <Grid sx={{ display: "flex" }} item xs={12}>
-                {sendMessage.messageType === "image" ? (
-                  <div className="chatscreen-image">
-                    <img width="100px" src={sendMessage.url} alt="img" />
-                  </div>
-                ) : (
-                  <div className="chatscreen-image">
-                    <a href={sendMessage.message.url} target="_blank">
-                      {doc}
-                    </a>
-                  </div>
-                )}
-                <CancelIcon
-                  onClick={() =>
+                  <CancelIcon
+                    onClick={() =>
+                      setSendMessage({
+                        ...sendMessage,
+                        url: "",
+                        messageType: "text",
+                      })
+                    }
+                  />
+                </Grid>
+              )}
+              <Grid item xs={8.5}>
+                <input
+                  value={sendMessage.message}
+                  onChange={(e) => {
                     setSendMessage({
                       ...sendMessage,
-                      url: "",
-                      messageType: "text",
-                    })
-                  }
-                />
-              </Grid>
-            )}
-            <Grid item xs={9}>
-              <input
-                value={sendMessage.message}
-                onChange={(e) => {
-                  setSendMessage({
-                    ...sendMessage,
-                    message: e.target.value,
-                  });
-                }}
-                type="text"
-              />
-            </Grid>
-            <Grid item xs={1}>
-              <IconButton>
-                <UploadFile
-                  icon={true}
-                  setFile={(data) => {
-                    setSendMessage({
-                      ...sendMessage,
-                      url: data,
-                      messageType: "image",
+                      message: e.target.value,
                     });
                   }}
+                  type="text"
                 />
-              </IconButton>
-            </Grid>
-            <Grid item xs={2}>
-              <IconButton
-                onClick={sendMessageHandler}
-                size="small"
-                sx={{
-                  background: "#2F80ED",
-                  borderRadius: "50%",
-                  color: "white",
-                  padding: "10px",
-                }}
-              >
-                <SendOutlinedIcon />
-              </IconButton>
-            </Grid>
+              </Grid>
+              <Grid item xs={2}>
+                <IconButton>
+                  <UploadFile
+                    icon={true}
+                    setFile={(data) => {
+                      setSendMessage({
+                        ...sendMessage,
+                        url: data,
+                        messageType: "image",
+                      });
+                    }}
+                  />
+                </IconButton>
+              </Grid>
+              <Grid item xs={1}>
+                <IconButton
+                  onClick={sendMessageHandler}
+                  size="small"
+                  sx={{
+                    background: "#2F80ED",
+                    borderRadius: "50%",
+                    color: "white",
+                    padding: "10px",
+                  }}
+                >
+                  <SendOutlinedIcon />
+                </IconButton>
+              </Grid>
+       
           </Grid>
         </>
       )}

@@ -4,14 +4,15 @@ import "./landingpage.css";
 import signInIcon from "../../assets/signin.png";
 import logo from "../../assets/logo.png";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
+import { auth, db } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../../context/userContext";
+import { doc,getDoc } from "firebase/firestore";
 function LandingPage() {
   const [ state, dispatch ] = useContext(userContext);
 
   const navigate = useNavigate();
-  const redirectUser = ({ displayName, email, photoURL }) => {
+  const redirectUser = async({ displayName, email, photoURL }) => {
     // if user exists, redirect to resent chats
     // if user does not exist, redirect to onboarding
     dispatch({
@@ -22,7 +23,19 @@ function LandingPage() {
         photoURL,
       }
     })
-    if (false) {
+    const docRef=doc(db,"userInfo",email)
+    const docSnap=await getDoc(docRef)
+    let user=null
+    if(docSnap.exists()){
+      user=docSnap.data()
+    }
+    if (user) {
+      dispatch({
+        type: "UPDATE",
+        payload: {
+          ...user,
+        }
+      });
       navigate("/chat/resentchat");
       // redirect to resent chats
     } else {

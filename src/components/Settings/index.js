@@ -8,8 +8,10 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "./settings.css";
 import { useNavigate } from "react-router-dom";
 import { darkContext } from "../../context/DarkmodeContext";
+import { userContext } from "../../context/userContext";
 function Settings() {
   const [theme, setTheme] = useContext(darkContext);
+  const [state,dispatch] = useContext(userContext)
   const navigate = useNavigate();
   return (
     <Grid 
@@ -32,17 +34,16 @@ function Settings() {
           <div>
             <img
               width={50}
-              src="https://www.w3schools.com/howto/img_avatar.png"
+              src={state.user.photoURL||"https://www.w3schools.com/howto/img_avatar.png"}
               alt="Avatar"
             />
           </div>
           <div
            
           >
-            <h3>name</h3>
+            <h3>{state.user.displayName}</h3>
             <h4>
-              dniunu xsaxsaxsad wdw da daw dwdawdwniu nui niu n uin iu n iun iun
-              cdcdwqdw{" "}
+              {state.user.status}
             </h4>
           </div>
         </div>

@@ -23,9 +23,10 @@ function ResentChat() {
   const navigate = useNavigate();
   const [openRecentChat, setOpenRecentChat] = React.useState(false);
   const [allLastMessages, setAllLastMessages] = React.useState(null);
-  const [allPinMessages, setAllPinMessages] = React.useState(null);
+  const [allPinMessages, setAllPinMessages] = React.useState([]);
   const [state, dispatch] = useContext(userContext);
   const [openNewChat, setOpenNewChat] = React.useState(false);
+
   const redirectToChat = (item) => {
     let secUser_email =
       item.user1.email === state.user.email
@@ -61,6 +62,7 @@ function ResentChat() {
       setAllPinMessages(pinConv[0]);
     });
   };
+  
   useEffect(() => {
     fetchLastMessages();
     fetchPinMessages();
@@ -95,28 +97,25 @@ function ResentChat() {
   };
   return (
     <div>
-      <Grid className="recentchat-container" container
-      sx={{
-       
-          display: 'flex',
-          flexWrap: 'wrap'
-       
-      }}
-     
+      <Grid
+        className="recentchat-container"
+        container
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          marginTop: '40px'
+        }}
       >
         <Grid item xs={12}>
           Pinned Chats
         </Grid>
         {allPinMessages && allPinMessages.length === 0 ? (
           <div>no pined chat</div>
-        ) : allPinMessages && allPinMessages.length > 0 ? (
+        ) : (
           <>
-            {allPinMessages.map((item, i) => {
+            {allPinMessages&&allPinMessages.map((item, i) => {
               return (
-                <Grid item xs={6}
-                onClick={() => redirectToChat(item)}
-                >
-                  
+                <Grid item xs={6} onClick={() => redirectToChat(item)}>
                   <div
                     style={{
                       background: theme.pinchatbg,
@@ -155,8 +154,6 @@ function ResentChat() {
               );
             })}
           </>
-        ) : (
-          <div>loading</div>
         )}
       </Grid>
 

@@ -61,7 +61,6 @@ const BottomNav = () => {
           <Route path="/chat/GroupResentChat" element={<GroupResentChat />} />
           <Route path="/settings" element={<Settings />} />
           </Route>
-          <Route path="/chat/newchat" element={<NewChat />} />
         
           <Route path="/chat/dms/:id/:lastmessageId" element={<ChatScreen type='dms' />} />
           <Route path="/chat/groupchat" element={<ChatScreen type='group' />} />

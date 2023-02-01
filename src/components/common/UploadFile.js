@@ -1,16 +1,18 @@
 import { TextField } from "@mui/material";
 import { upload } from "@testing-library/user-event/dist/upload";
-import React from "react";
+import React, { useContext } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebaseConfig";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
+import { darkContext } from "../../context/DarkmodeContext";
 function UploadFile({ file,accept='images', setFile, icon = null }) {
   const [progress, setProgress] = React.useState(0);
   const inpref = React.useRef(null);
+
+const [theme, setTheme] = useContext(darkContext);
   const upload = (e) => {
     console.log(e.target.files[0]);
     const file = e.target.files[0];
-
     const storageRef = ref(storage, `images/${file.name}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
@@ -45,7 +47,12 @@ function UploadFile({ file,accept='images', setFile, icon = null }) {
     <div>{progress} %</div>
   ) : (
     <>
-      {icon && <AttachFileIcon onClick={() => inpref.current.click()} />}
+      {icon && <AttachFileIcon
+      sx={{
+        color:theme.font1
+      }}
+      
+      onClick={() => inpref.current.click()} />}
       <input
         style={{
           display: icon ? "none" : "block",

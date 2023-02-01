@@ -1,6 +1,6 @@
 .chatScreen-container{
   width: 100%;
-  height: 98vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,7 +15,7 @@
 }
 
 .chatScreen-body{
-  height: 70%!important;
+  height: 80%!important;
   display: flex;
   flex-direction: column!important;
    justify-content: flex-end;
